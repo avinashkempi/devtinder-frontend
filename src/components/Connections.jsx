@@ -3,6 +3,7 @@ import { BASE_URL } from "../utils/constants";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addConnections } from "../utils/connectionSlice";
+import { Link } from "react-router";
 const Connections = () => {
   const connections = useSelector((store) => store.connection);
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ const Connections = () => {
     <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
       {connections.map((connection, idx) => {
         const {
+          _id,
           firstName,
           lastName,
           photoUrl,
@@ -58,10 +60,15 @@ const Connections = () => {
               />
             </figure>
             <div className="card-body">
-              <h2 className="card-title">{`${firstName || ""} ${lastName || ""}`.trim()}</h2>
+              <h2 className="card-title">
+                {`${firstName || ""} ${lastName || ""}`.trim()}
+              </h2>
               {age && gender && <p>{`${age}, ${gender}`}</p>}
               <p>{about}</p>
               <p>{Array.isArray(skills) ? skills.join(", ") : skills}</p>
+              <Link to={"/chat/" + _id}>
+                <button>Chat</button>
+              </Link>
             </div>
           </div>
         );

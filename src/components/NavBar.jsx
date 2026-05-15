@@ -65,6 +65,11 @@ const NavBar = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/chat" className="justify-between">
+                  Chat
+                </Link>
+              </li>
+              <li>
                 <a onClick={handleLogout}>Logout</a>
               </li>
             </ul>
